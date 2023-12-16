@@ -6,6 +6,15 @@ type FindSanta<T extends string[]> =
 		: FindSanta<HeadItems> 
 	: never;
 
+// Tail-recursive optimized
+type FindSanta<T, R extends [...unknown[]] = []> = 
+  T extends [infer Head, ...infer Rest] 
+	? Head extends '🎅🏼'
+		? R['length']
+		: FindSanta<Rest, [...R, Head]>
+	: never; 
+
+
 // Tests
 import { Expect, Equal } from 'type-testing';
 
