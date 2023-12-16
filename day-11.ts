@@ -4,6 +4,16 @@ type SantaListProtector<T extends {}> = {
 		T[Key] extends {} ? T[Key] extends Function ? T[Key] : SantaListProtector<T[Key]> : T[Key] 
 };
 
+// For recursive runtime inference
+type SantaListProtector<T extends {}> =
+    T extends any
+    ? {
+        +readonly [Key in keyof T]:
+            T[Key] extends {} ? T[Key] extends Function ? T[Key] : SantaListProtector<T[Key]> : T[Key]
+        }
+    : never;
+
+
 // Tests
 import { Expect, Equal } from 'type-testing';
 
