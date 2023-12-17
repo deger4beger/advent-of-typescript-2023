@@ -5,7 +5,7 @@ type WhoWins<T1 extends RockPaperScissors, T2 extends RockPaperScissors> =
 	T1 extends '👊🏻' ? T2 extends '🖐🏾' ? "win" : T2 extends '✌🏽' ? "lose" : "draw" :
 	T1 extends '🖐🏾' ? T2 extends '👊🏻' ? "lose" : T2 extends "✌🏽" ? "win" : "draw" :
 	T1 extends "✌🏽" ? T2 extends '👊🏻' ? "win" : T2 extends "🖐🏾" ? "lose" : "draw" :
-	"draw";
+	never;
 
 // Tests
 import { Expect, Equal } from 'type-testing';
