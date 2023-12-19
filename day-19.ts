@@ -12,7 +12,7 @@ type FillArray<T extends string, Count extends number, Result extends string[] =
 
 type Rebuild<T extends number[], Result extends any[] = []> = 
 	T extends [infer Head extends number, ...infer Rest extends number[]]
-	? Result extends [...infer HeadRes extends string[], infer LastRes extends string]
+	? Result extends [...infer _, infer LastRes extends string]
 		? Rebuild<Rest, [...Result, ...FillArray<GetCurrentSymbol<LastRes>, Head>]>
 		: Rebuild<Rest, [...Result, ...FillArray<'🛹', Head>]>
 	: Result;
